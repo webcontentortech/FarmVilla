@@ -1,0 +1,76 @@
+.onfield{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 800px;
+}
+.feedtree{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 900px;
+}
+.gohome{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 1000px;
+}
+.farmboy{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.farmtree{
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 0px;
+}
+.innerdiv{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 600px;
+}
+.startwater{
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 0px;
+}
+.stopwater{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: 0px;
+}
+.plot{
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 400px;
+}
+.seed{
+    position: absolute;
+    margin-top: 230px;
+    margin-left: 500px;
+}
+.harvest{
+    position: absolute;
+    margin-top: 360px;
+    margin-left: 400px;
+}
+.up{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 600px;
+}
+.left{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 550px;
+}
+.right{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 660px;
+}
+.down{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 600px;
+}
+
