@@ -1,14 +1,14 @@
-.v{
+.onfield{
     position: absolute;
     margin-top: 0px;
     margin-left: 800px;
 }
-.i{
+.feedtree{
     position: absolute;
     margin-top: 0px;
     margin-left: 900px;
 }
-.c{
+.gohome{
     position: absolute;
     margin-top: 0px;
     margin-left: 1000px;
@@ -28,47 +28,47 @@
     margin-top: 50px;
     margin-left: 600px;
 }
-.w{
+.startwater{
     position: absolute;
     margin-top: 400px;
     margin-left: 0px;
 }
-.x{
+.stopwater{
     position: absolute;
     margin-top: 430px;
     margin-left: 0px;
 }
-.a{
+.plot{
     position: absolute;
     margin-top: 300px;
     margin-left: 400px;
 }
-.b{
+.seed{
     position: absolute;
     margin-top: 230px;
     margin-left: 500px;
 }
-.d{
+.harvest{
     position: absolute;
     margin-top: 360px;
     margin-left: 400px;
 }
-.m{
+.up{
     position: absolute;
     margin-top: 0px;
     margin-left: 600px;
 }
-.n{
+.left{
     position: absolute;
     margin-top: 5px;
     margin-left: 550px;
 }
-.o{
+.right{
     position: absolute;
     margin-top: 10px;
     margin-left: 660px;
 }
-.p{
+.down{
     position: absolute;
     margin-top: 25px;
     margin-left: 600px;
