@@ -1,7 +1,8 @@
 $(document).ready(function(){
     var t=800;
     var w=350;
-    var x=800;    
+    var x=600; 
+    var count=0;
     $(".up").hide();
     $(".left").hide();
     $(".right").hide();
@@ -14,18 +15,36 @@ $(document).ready(function(){
         $("#onfield").click(function () { 
             $(".farmboy").animate({ "marginTop":"+200px"},1000);
             $(".farmboy").animate({ "marginLeft":"+600px"},1000);
+            $("#up").show();
+            $("#left").show();
+            $("#right").show();
+            $("#down").show();
         });
-        $("#plot").click(function(){
+        $("#feedtree").click(function () { 
+            $(".farmboy").animate({ "marginTop":"+450px"},1000);
+            $(".farmboy").animate({ "marginLeft":"+100px"},1000);
+        });
+        $("#gohome").click(function () { 
+            $(".farmboy").animate({ "marginTop":"+0px"},1000);
+            $(".farmboy").animate({ "marginLeft":"+0px"},1000);
+        });
+        $("#plow").click(function(){
             startploting();
         });
+        
         $("#seed").click(function(){
             startseeding();
         });
         $("#right").click(function(){
+            if (count<4) {
             goright();
-        }); 
+            console.log(count);
+            count++;
+        }
+        });
         $("#down").click(function(){
             godown();
+            count=0;
         }); 
         $("#up").click(function(){
             goup();
@@ -34,15 +53,10 @@ $(document).ready(function(){
             goleft();
         }); 
         function startploting(){
-        $("#vic").show();
-        $(".seed").show();
-        $("#up").show();
-        $("#left").show();
-        $("#right").show();
-        $("#down").show();
+            $(".seed").show();
         }
         function startseeding(){
-         $("#mic").show();
+            $("#mic").show();
         }
         function goright(){
             $(".farmboy").animate({ "marginLeft":"+"+t+"px"},1000);
@@ -58,7 +72,7 @@ $(document).ready(function(){
             console.log(t);
         }
         function goleft(){
-            $(".farmboy").animate({ "marginleft":"-"+x+"px"},1000);
+            $(".farmboy").animate({ "marginLeft":"+"+x+"px"},1000);
             console.log(x);
         }
 });
