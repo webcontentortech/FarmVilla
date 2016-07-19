@@ -35,8 +35,8 @@
 }
 .stopwater{
     position: absolute;
-    margin-top: 430px;
-    margin-left: 0px;
+    margin-top: 320px;
+    margin-left: 100px;
 }
 .plow{
     position: absolute;
@@ -50,8 +50,8 @@
 }
 .harvest{
     position: absolute;
-    margin-top: 360px;
-    margin-left: 400px;
+    margin-top: 255px;
+    margin-left: 500px;
 }
 .up{
     position: absolute;
@@ -72,4 +72,9 @@
     position: absolute;
     margin-top: 25px;
     margin-left: 600px;
+}
+.imgwater{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: 110px;
 }

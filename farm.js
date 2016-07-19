@@ -1,3 +1,5 @@
+var current;
+var one;
 $(document).ready(function() {
     var t = 800;
     var w = 350;
@@ -14,6 +16,7 @@ $(document).ready(function() {
     $("#seed").hide();
     $(".imgplow").hide();
     $(".imgseed").hide();
+    $(".imgwater").hide();
 
     $("#feedtree").click(function() {
         $(".farmboy").animate({
@@ -23,6 +26,25 @@ $(document).ready(function() {
             "marginTop": "+450px"
         }, 1000);
     });
+    $("#left").click(function() {
+        moveLeft();
+    });
+    $("#right").click(function() {
+        moveRight();
+    });
+    $("#top").click(function() {
+        moveTop();
+    });
+    $("#down").click(function() {
+        moveBottom();
+    });
+    $("#startwater").click(function() {
+        startwater();
+        setTimeout(myFun, 6000);
+    });
+    $("#stopwater").click(function() {
+        stopwater();
+    });
     $("#gohome").click(function() {
         $(".farmboy").animate({
             "marginTop": "+0px"
@@ -31,23 +53,6 @@ $(document).ready(function() {
             "marginLeft": "+0px"
         }, 1000);
     });
-    $("#plow").click(function() {
-        startploting();
-    });
-
-    $("#seed").click(function() {
-        startseeding()();
-    });
-
-    function startploting() {
-        $(".seed").show();
-        $('#myFarm').find('td[current="' + activeFarmField + '"]').css('background', 'url(img/plow.png)');
-    }
-
-    function startseeding() {
-        $(".imgplow").hide();
-        $(".imgseed").show();
-    }
     createFarm(farmFields);
     $("#onfield").click(function() {
         $(".farmboy").animate({
@@ -101,8 +106,6 @@ farmFields.one = {
 }
 var farmArray = [];
 var activeKey = 0;
-
-
 var createFarm = function(farmData) {
     var i = 1;
     var elementToAppend = '';
@@ -122,11 +125,9 @@ var createFarm = function(farmData) {
         farmArray.push(value);
         i++;
     });
-
     console.log('elementToAppend -----------------', elementToAppend, farmArray);
     $('#myFarm').html(elementToAppend);
 }
-
 var activeButtons = function(data) {
     console.log(data);
     var btn = {
@@ -139,7 +140,6 @@ var activeButtons = function(data) {
     btn.isBottomActive = (data.bottom) == false ? false : true;
     showButtons(btn);
 }
-
 var showButtons = function(btn) {
     console.log('BTN- -------------------', btn);
     $('#plow').attr('current', btn.data.current);
@@ -178,7 +178,8 @@ var setActive = function(current) {
         nextFarmField = 'two';
     }
 }
-var moveRight = function() {
+
+function moveRight() {
     activeKey++;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -188,7 +189,8 @@ var moveRight = function() {
         'marginLeft': margin + 'px'
     }, 1000);
 }
-var moveLeft = function() {
+
+function moveLeft() {
     activeKey--;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -198,7 +200,8 @@ var moveLeft = function() {
         'marginLeft': margin + 'px'
     }, 1000);
 }
-var moveTop = function() {
+
+function moveTop() {
     activeKey -= 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -209,7 +212,7 @@ var moveTop = function() {
     }, 1000);
 }
 
-var moveBottom = function() {
+function moveBottom() {
     activeKey += 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -219,8 +222,37 @@ var moveBottom = function() {
         'marginTop': margin + 'px'
     }, 1000);
 }
-
-var plowField = function(self) {
-    var current = $(self).attr('current');
+plowField = function(self) {
+    $("#seed").show();
+    current = $(self).attr('current');
     $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/plow.png)');
+    console.log(current);
+}
+seedField = function(self) {
+    $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/seed.png)');
+    console.log(current);
+}
+
+function myFunction() {
+    $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
+    $("#harvest").show();
+
+    console.log(current);
+}
+
+function startharvest() {
+    $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/land.png)');
+}
+
+function startwater() {
+    $(".imgwater").show();
+}
+
+function stopwater() {
+    $(".imgwater").hide();
+}
+
+function myFun() {
+    alert("please stop the water");
+    $("#stopwater").show();
 }
