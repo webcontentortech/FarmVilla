@@ -2,28 +2,31 @@
 <html>
     <head>
         <title>farm</title>
-        <script src="jquery.js"></script>
-        <script type="text/javascript" src="game.js"></script>
-        <link rel="stylesheet" type="text/css" href="game.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="farm.js"></script>
+        <link rel="stylesheet" type="text/css" href="farm.css">
     </head>
     <body>
         <h1>farmvilla game</h1>
         <div style= "width:1200px; height:600px; border:solid 1px black;">
             <img src="img/farmhouse.jpg" alt="" style="width:100px;height:100px;" class="home">
-            <img src="img/farmboy.jpg" alt="" style="width:100px;height:100px;" id = "farmBoy"class="farmboy">
+            <img src="img/farmboy.jpg" alt="" style="width:100px;height:100px;" id = "farmBoy" class="farmboy">
             <img src="img/farmtree.jpg" alt="" style="width:100px;height:100px;" class="farmtree">
+            <img src="img/plow.png" alt="" style="width:100px;height:100px;" class="imgplow" id="img">
+            <img src="img/seed.png" alt="" style="width:100px;height:100px;" class="imgseed" id="img">
+            <img src="img/waterrr.jpg" alt="" style="width:100px;height:20px;" class="imgwater" id="img">
             <input type="button" name="button" value="Go Onfield" id="onfield" class="onfield" height="10px" width="10px">
             <input type="button" name="button" value="Feed Tree" id="feedtree" class="feedtree"  height="10px" width="10px" >
             <input type="button" name="button" value="Go Home" id="gohome" class="gohome"  height="10px" width="10px" >
             <input type="button" name="button" value="Start Water" id="startwater" class="startwater"  height="10px" width="10px" >
-            <input type="button" name="button" value="Stop Water" id="stopwater" class="stopwater"  height="10px" width="10px" >
+            <input type="button" name="button" value="Stop Water" id="stopwater" class="stopwater"  height="10px" width="10px"  >
             <input type="button" name="button" value="Plow" id="plow" class="plow"  height="10px" width="10px" onclick = "plowField(this)">
-            <input type="button" name="button" value="Seed" id="seed" class="seed"  height="10px" width="10px" >
-            <input type="button" name="button" value="Harvest" id="harvest" class="harvest"  height="10px" width="10px" >
-            <input type="button" name="button" value="Up" id="top" class="up"  height="10px" width="10px" onclick = "moveTop()">
-            <input type="button" name="button" value="Left" id="left" class="left"  height="10px" width="10px" onclick = "moveLeft()">
-            <input type="button" name="button" value="Right" id="right" class="right"  height="10px" width="10px" onclick = "moveRight()">
-            <input type="button" name="button" value="Down" id="down" class="down"  height="10px" width="10px" onclick = "moveBottom()">
+            <input type="button" name="button" value="Seed" id="seed" class="seed"  height="10px" width="10px" onclick = "seedField(this);setTimeout(myFunction, 5000)"> 
+            <input type="button" name="button" value="Harvest" id="harvest" class="harvest"  height="10px" width="10px" onclick="startharvest()" >
+            <input type="button" name="button" value="Up" id="top" class="up"  height="10px" width="10px" >
+            <input type="button" name="button" value="Left" id="left" class="left"  height="10px" width="10px" >
+            <input type="button" name="button" value="Right" id="right" class="right"  height="10px" width="10px" >
+            <input type="button" name="button" value="Down" id="down" class="down"  height="10px" width="10px" > 
             <div style= "width:600px; height:315px; border:solid 1px black;" class="innerdiv">
                 <table border="1">
                 <tbody id = "myFarm"></tbody>
