@@ -5,26 +5,22 @@ $(document).ready(function() {
     var w = 350;
     var x = 600;
     var count = 0;
-    $(".up").hide();
-    $(".left").hide();
-    $(".right").hide();
-    $(".down").hide();
-    $("#mic").hide();
-    $("#vic").hide();
     $("#stopwater").hide();
-    $("#harvest").hide();
-    $("#seed").hide();
     $(".imgplow").hide();
     $(".imgseed").hide();
     $(".imgwater").hide();
-
+    $("#startwater").hide();
+    $("#plot").prop("disabled",true).css("cursor","default");
+    $("#seed").prop("disabled",true).css("cursor","default");
+    $("#harvest").prop("disabled",true).css("cursor","default");
     $("#feedtree").click(function() {
         $(".farmboy").animate({
             "marginLeft": "+100px"
-        }, 1000);
+        }, 3000);
         $(".farmboy").animate({
             "marginTop": "+450px"
-        }, 1000);
+        }, 3000);
+        $("#startwater").show();
     });
     $("#left").click(function() {
         moveLeft();
@@ -48,19 +44,22 @@ $(document).ready(function() {
     $("#gohome").click(function() {
         $(".farmboy").animate({
             "marginTop": "+0px"
-        }, 1000);
+        }, 3000);
         $(".farmboy").animate({
             "marginLeft": "+0px"
-        }, 1000);
+        }, 3000);
     });
     createFarm(farmFields);
     $("#onfield").click(function() {
         $(".farmboy").animate({
             "marginTop": '200px'
-        }, 1000);
+        }, 3000);
         $(".farmboy").animate({
             "marginLeft": '600px'
-        }, 1000);
+        }, 3000);
+        $("#plow").prop("disabled",false).css("cursor","pointer");
+        $("#seed").prop("disabled",true).css("cursor","default");
+        $("#harvest").prop("disabled",true).css("cursor","default");
         activeButtons(farmFields.one);
     });
 });
@@ -110,16 +109,16 @@ var createFarm = function(farmData) {
     var i = 1;
     var elementToAppend = '';
     $.each(farmData, function(key, value) {
-        var td = '<td width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '" ></td>';
+        var td = '<td style = "background:url(img/land.png)" width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td>';
         if (i == 1) {
-            var td = '<tr><td width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td>';
+            var td = '<tr><td style = "background:url(img/land.png)" width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td>';
         }
         if (i == 4) {
-            var td = '</tr><tr><td width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td>';
+            var td = '</tr><tr><td style = "background:url(img/land.png)" width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td>';
 
         }
         if (i == 6) {
-            var td = '<td width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></td></tr>';
+            var td = '<td style = "background:url(img/land.png)" width="200" height="150" current = "' + key + '" left = "' + farmData[key].left + '"></tr>';
         }
         elementToAppend += td;
         farmArray.push(value);
@@ -144,31 +143,31 @@ var showButtons = function(btn) {
     console.log('BTN- -------------------', btn);
     $('#plow').attr('current', btn.data.current);
     if (!btn.isLeftActive) {
-        $('#left').hide();
+        $("#left").prop("disabled",true).css("cursor","default");
         $('#right').removeAttr('nextLeft');
     } else {
-        $('#left').show();
+        $('#left').prop("disabled",false).css("cursor","pointer");
         $('#left').attr('nextLeft', btn.data.left);
     }
     if (!btn.isRightActive) {
-        $('#right').hide();
+        $('#right').prop("disabled",true).css("cursor","default");
         $('#right').removeAttr('nextRight');
     } else {
-        $('#right').show();
+        $('#right').prop("disabled",false).css("cursor","pointer");
         $('#right').attr('nextRight', btn.data.right);
     }
     if (!btn.isTopActive) {
         $('#top').removeAttr('nextTop');
-        $('#top').hide();
+        $('#top').prop("disabled",true).css("cursor","default");
     } else {
-        $('#top').show();
+        $('#top').prop("disabled",false).css("cursor","pointer");
         $('#top').attr('nextTop', btn.data.top);
     }
     if (!btn.isBottomActive) {
-        $('#down').hide();
+        $('#down').prop("disabled",true).css("cursor","default");
         $('#down').removeAttr('nextBottom');
     } else {
-        $('#down').show();
+        $('#down').prop("disabled",false).css("cursor","pointer");
         $('#down').attr('nextBottom', btn.data.bottom);
     }
 }
@@ -223,25 +222,31 @@ function moveBottom() {
     }, 1000);
 }
 plowField = function(self) {
-    $("#seed").show();
+    //$("#seed").show();
     current = $(self).attr('current');
-    $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/plow.png)');
+    $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/plow.png)').css('(z-index: 2)');
+    $("#seed").prop("disabled",false).css("cursor","pointer");
+     $("#plow").prop("disabled",true).css("cursor","default");
     console.log(current);
 }
 seedField = function(self) {
     $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/seed.png)');
+    $("#harvest").prop("disabled",false).css("cursor","pointer");
+    $("#seed").prop("disabled",true).css("cursor","default");
+    $("#plow").prop("disabled",true).css("cursor","default");
     console.log(current);
 }
 
 function myFunction() {
     $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
-    $("#harvest").show();
+   // $("#harvest").show();
 
     console.log(current);
 }
 
 function startharvest() {
     $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/land.png)');
+    console.log(current);
 }
 
 function startwater() {
