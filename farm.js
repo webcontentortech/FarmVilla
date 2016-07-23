@@ -1,4 +1,4 @@
-var current;
+//var current;
 var one;
 var two;
 var src;
@@ -27,7 +27,7 @@ $(document).ready(function() {
             "marginTop": "+450px"
         }, 3000);
         setTimeout(startwaterbutton, 5000);
-           
+
     });
     $("#left").click(function() {
         moveLeft();
@@ -51,11 +51,11 @@ $(document).ready(function() {
     $("#plow").click(function() {
         plowField(this);
     });
-     $("#seed").click(function() {
+    $("#seed").click(function() {
         seedField(this);
-        setTimeout(seededField(this), 6000);
     });
     $("#gohome").click(function() {
+
         $(".farmboy").animate({
             "marginTop": "+0px"
         }, 3000);
@@ -63,6 +63,7 @@ $(document).ready(function() {
             "marginLeft": "+0px"
         }, 3000);
         $("#startwater").hide();
+
     });
     createFarm(farmFields);
     $("#onfield").click(function() {
@@ -143,6 +144,7 @@ var createFarm = function(farmData) {
     console.log('elementToAppend -----------------', elementToAppend, farmArray);
     $('#myFarm').html(elementToAppend);
 }
+
 var activeButtons = function(data) {
     console.log(data);
     var btn = {
@@ -155,6 +157,7 @@ var activeButtons = function(data) {
     btn.isBottomActive = (data.bottom) == false ? false : true;
     showButtons(btn);
 }
+
 var showButtons = function(btn) {
     console.log('BTN- -------------------', btn);
     $('#plow').attr('current', btn.data.current);
@@ -191,7 +194,7 @@ var showButtons = function(btn) {
     }
 }
 
-var moveRight= function() {
+var moveRight = function() {
     activeKey++;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -202,23 +205,23 @@ var moveRight= function() {
     $('#farmBoy').animate({
         'marginLeft': margin + 'px'
     }, 1000);
-    if(status == 'land'){
+    if (status == 'land') {
         $("#plow").prop("disabled", false).css("cursor", "pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
+        $("#seed").prop("disabled", true).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'plowed'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", false).css("cursor", "default"); 
+    } else if (status == 'plowed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", false).css("cursor", "pointer");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'seeded'){
+    } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
-        $("#harvest").prop("disabled", false).css("cursor", "default");
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        $("#harvest").prop("disabled", false).css("cursor", "pointer");
     }
     console.log([activeKey]);
 }
 
-var  moveLeft= function(){
+var moveLeft = function() {
     activeKey--;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -229,22 +232,22 @@ var  moveLeft= function(){
     $('#farmBoy').animate({
         'marginLeft': margin + 'px'
     }, 1000);
-    if(status=='land'){
-        $("#plow").prop("disabled",false).css("cursor","pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
+    if (status == 'land') {
+        $("#plow").prop("disabled", false).css("cursor", "pointer");
+        $("#seed").prop("disabled", true).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'plowed'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", false).css("cursor", "default"); 
+    } else if (status == 'plowed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", false).css("cursor", "pointer");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'seeded'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
-        $("#harvest").prop("disabled", false).css("cursor", "default");
+    } else if (status == 'seeded') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        $("#harvest").prop("disabled", false).css("cursor", "pointer");
     }
 }
 
-var moveTop = function(){
+var moveTop = function() {
     activeKey -= 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -254,22 +257,22 @@ var moveTop = function(){
     $('#farmBoy').animate({
         'marginTop': margin + 'px'
     }, 1000);
-    if(status=='land'){
-        $("#plow").prop("disabled",false).css("cursor","pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
+    if (status == 'land') {
+        $("#plow").prop("disabled", false).css("cursor", "pointer");
+        $("#seed").prop("disabled", true).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'plowed'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", false).css("cursor", "default"); 
+    } else if (status == 'plowed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", false).css("cursor", "pointer");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'seeded'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
-        $("#harvest").prop("disabled", false).css("cursor", "default");
+    } else if (status == 'seeded') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        $("#harvest").prop("disabled", false).css("cursor", "pointer");
     }
 }
 
-var moveBottom=function(){
+var moveBottom = function() {
     activeKey += 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
@@ -279,58 +282,65 @@ var moveBottom=function(){
     $('#farmBoy').animate({
         'marginTop': margin + 'px'
     }, 1000);
-    if(status=='land'){
-        $("#plow").prop("disabled",false).css("cursor","pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
+    if (status == 'land') {
+        $("#plow").prop("disabled", false).css("cursor", "pointer");
+        $("#seed").prop("disabled", true).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'plowed'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", false).css("cursor", "default"); 
+    } else if (status == 'plowed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", false).css("cursor", "pointer");
         $("#harvest").prop("disabled", true).css("cursor", "default");
-    }else if(status == 'seeded'){
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
-        $("#seed").prop("disabled", true).css("cursor", "default"); 
-        $("#harvest").prop("disabled", false).css("cursor", "default");
+    } else if (status == 'seeded') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        $("#harvest").prop("disabled", false).css("cursor", "pointer");
     }
 }
 
-var plowField=function(self) {
+var plowField = function(self) {
     var current = $(self).attr('current');
-    if($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'land'){
+    if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'land') {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/plow.png)');
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'plowed');
         $("#seed").prop("disabled", false).css("cursor", "pointer");
         $("#plow").prop("disabled", true).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "pointer");
-        console.log(status);
+        console.log('in plowField fn');
     }
 }
-var seedField=function(self){
+
+var seedField = function(self) {
     var current = $(self).attr('current');
-    if($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'plowed'){
+    if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'plowed') {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/seed.png)');
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seed');
         $("#seed").prop("disabled", true).css("cursor", "default");
         $("#plow").prop("disabled", true).css("cursor", "default");
-        $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        $("#harvest").prop("disabled", true).css("cursor", "pointer");
+    }
+    var self = $('#seed');
+    setTimeout(function() {
+        seededField(self);
+    }, 2000);
+
+    var seededField = function(self) {
+        var current = $(self).attr('current');
+        if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed') {
+            $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
+            $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
+            $("#seed").prop("disabled", true).css("cursor", "default");
+            $("#plow").prop("disabled", true).css("cursor", "default");
+            $("#harvest").prop("disabled", false).css("cursor", "pointer");
+
+        }
     }
 }
-var seededField=function(self){
+
+var startharvest = function(self) {
     var current = $(self).attr('current');
-    if($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed'){
-        $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
-        $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
-        $("#seed").prop("disabled", true).css("cursor", "default");
-        $("#plow").prop("disabled", true).css("cursor", "default");
-        $("#harvest").prop("disabled", false).css("cursor", "pointer");
-        alert("hiii");
-    }
-}
-var startharvest=function(self) {
-    var current = $(self).attr('current');
-    if($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seeded'){
+    if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seeded') {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/land.png)');
-        $('#myFarm').find('td[current="' + current + '"]').attr('status','land');
+        $('#myFarm').find('td[current="' + current + '"]').attr('status', 'land');
         $("#seed").prop("disabled", true).css("cursor", "default");
         $("#plow").prop("disabled", false).css("cursor", "default");
         $("#harvest").prop("disabled", true).css("cursor", "pointer");
@@ -338,28 +348,21 @@ var startharvest=function(self) {
     console.log(current);
 }
 
-var startwater=function() {
+var startwater = function() {
     $(".imgwater").show();
 }
 
-var stopwater=function() {
+var stopwater = function() {
     $(".imgwater").hide();
     $("#stopwater").hide();
     $("#startwater").show();
-
 }
-
-var stopbutton=function() {
+var stopbutton = function() {
     alert("please stop the water");
     $("#startwater").hide();
     $("#stopwater").show();
 }
-var startwaterbutton=function(){
-     $("#startwater").show();
+
+var startwaterbutton = function() {
+    $("#startwater").show();
 }
-
-
-
-
-
-
