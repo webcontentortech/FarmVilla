@@ -1,5 +1,5 @@
-//var current;
 var one;
+var current;
 var two;
 var src;
 $(document).ready(function() {
@@ -12,14 +12,48 @@ $(document).ready(function() {
     $(".imgseed").hide();
     $(".imgwater").hide();
     $("#startwater").hide();
+    $("#gohome").prop("disabled", true).css("cursor", "default");
+    document.getElementById("gohome").style.background = "#222222";
+    $("#onfield").prop("disabled", false).css("cursor", "pointer");
+    document.getElementById("onfield").style.background = "#f2f2f2";
+    $("#feedtree").prop("disabled", false).css("cursor", "pointer");
+    document.getElementById("feedtree").style.background = "#f2f2f2";
     $("#plow").prop("disabled", true).css("cursor", "default");
+    document.getElementById("plow").style.background = "#222222";
     $("#seed").prop("disabled", true).css("cursor", "default");
+    document.getElementById("seed").style.background = "#222222";
     $("#harvest").prop("disabled", true).css("cursor", "default");
+    document.getElementById("harvest").style.background = "#222222";
     $("#left").prop("disabled", true).css("cursor", "default");
+    document.getElementById("left").style.background = "#222222";
     $("#right").prop("disabled", true).css("cursor", "default");
+    document.getElementById("right").style.background = "#222222";
     $("#top").prop("disabled", true).css("cursor", "default");
+    document.getElementById("top").style.background = "#222222";
     $("#down").prop("disabled", true).css("cursor", "default");
+    document.getElementById("down").style.background = "#222222";
+
     $("#feedtree").click(function() {
+        $("#left").prop("disabled", true).css("cursor", "default");
+        document.getElementById("left").style.background = "#222222";
+        $("#top").prop("disabled", true).css("cursor", "default");
+        document.getElementById("top").style.background = "#222222";
+        $("#right").prop("disabled", true).css("cursor", "default");
+        document.getElementById("right").style.background = "#222222";
+        $("#down").prop("disabled", true).css("cursor", "default");
+        document.getElementById("down").style.background = "#222222";
+        $("#feedtree").prop("disabled", true).css("cursor", "default");
+        document.getElementById("feedtree").style.background = "#222222";
+        $("#onfield").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("onfield").style.background = "#f2f2f2";
+        $("#gohome").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("gohome").style.background = "#f2f2f2";
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
         $(".farmboy").animate({
             "marginLeft": "+100px"
         }, 3000);
@@ -41,6 +75,9 @@ $(document).ready(function() {
     $("#down").click(function() {
         moveBottom();
     });
+    $("#harvest").click(function() {
+        startharvest(this);
+    });
     $("#startwater").click(function() {
         startwater();
         setTimeout(stopbutton, 6000);
@@ -55,7 +92,26 @@ $(document).ready(function() {
         seedField(this);
     });
     $("#gohome").click(function() {
-
+        $("#left").prop("disabled", true).css("cursor", "default");
+        document.getElementById("left").style.background = "#222222";
+        $("#top").prop("disabled", true).css("cursor", "default");
+        document.getElementById("top").style.background = "#222222";
+        $("#right").prop("disabled", true).css("cursor", "default");
+        document.getElementById("right").style.background = "#222222";
+        $("#down").prop("disabled", true).css("cursor", "default");
+        document.getElementById("down").style.background = "#222222";
+        $("#feedtree").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("feedtree").style.background = "#f2f2f2";
+        $("#onfield").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("onfield").style.background = "#f2f2f2";
+        $("#gohome").prop("disabled", true).css("cursor", "default");
+        document.getElementById("gohome").style.background = "#222222";
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
         $(".farmboy").animate({
             "marginTop": "+0px"
         }, 3000);
@@ -67,17 +123,54 @@ $(document).ready(function() {
     });
     createFarm(farmFields);
     $("#onfield").click(function() {
+        activeButtons(farmArray[activeKey]);
+        console.log([activeKey]);
+        var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
+        if (status == 'land') {
+            $("#plow").prop("disabled", false).css("cursor", "pointer");
+            document.getElementById("plow").style.background = "#f2f2f2";
+            $("#seed").prop("disabled", true).css("cursor", "default");
+            document.getElementById("seed").style.background = "#222222";
+            $("#harvest").prop("disabled", true).css("cursor", "default");
+            document.getElementById("harvest").style.background = "#222222";
+            console.log(current);
+        } else if (status == 'plowed') {
+            $("#plow").prop("disabled", true).css("cursor", "default");
+            document.getElementById("plow").style.background = "#222222";
+            $("#seed").prop("disabled", false).css("cursor", "pointer");
+            document.getElementById("seed").style.background = "#f2f2f2";
+            $("#harvest").prop("disabled", true).css("cursor", "default");
+            document.getElementById("harvest").style.background = "#222222";
+        } else if (status == 'seeded') {
+            $("#plow").prop("disabled", true).css("cursor", "default");
+            document.getElementById("plow").style.background = "#222222";
+            $("#seed").prop("disabled", true).css("cursor", "default");
+            document.getElementById("seed").style.background = "#222222";
+            $("#harvest").prop("disabled", false).css("cursor", "pointer");
+            document.getElementById("harvest").style.background = "#f2f2f2";
+        }
+
+        $("#gohome").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("gohome").style.background = "#f2f2f2";
+        $("#feedtree").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("feedtree").style.background = "#f2f2f2";
+        $("#onfield").prop("disabled", true).css("cursor", "default");
+        document.getElementById("onfield").style.background = "#222222";
         $(".farmboy").animate({
             "marginTop": '250px'
         }, 3000);
         $(".farmboy").animate({
             "marginLeft": '645px'
         }, 3000);
-        $("#plow").prop("disabled", false).css("cursor", "pointer");
+        /*$("#plow").prop("disabled", false).css("cursor", "pointer");
+         document.getElementById("plow").style.background="#f2f2f2";
         $("#seed").prop("disabled", true).css("cursor", "default");
+         document.getElementById("seed").style.background="#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
-        activeButtons(farmFields.one);
+         document.getElementById("harvest").style.background="#222222";
+        activeButtons(farmFields.one);*/
         $("#startwater").hide();
+        console.log(current);
     });
 });
 var defaultFarmField = 'one';
@@ -165,31 +258,38 @@ var showButtons = function(btn) {
     $('#harvest').attr('current', btn.data.current);
     if (!btn.isLeftActive) {
         $("#left").prop("disabled", true).css("cursor", "default");
-        // document.getElementById("left").style.background="#222222";
+        document.getElementById("left").style.background = "#222222";
         $('#right').removeAttr('nextLeft');
     } else {
         $('#left').prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("left").style.background = "#f2f2f2";
         $('#left').attr('nextLeft', btn.data.left);
     }
     if (!btn.isRightActive) {
         $('#right').prop("disabled", true).css("cursor", "default");
+        document.getElementById("right").style.background = "#222222";
         $('#right').removeAttr('nextRight');
     } else {
         $('#right').prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("right").style.background = "#f2f2f2";
         $('#right').attr('nextRight', btn.data.right);
     }
     if (!btn.isTopActive) {
         $('#top').removeAttr('nextTop');
         $('#top').prop("disabled", true).css("cursor", "default");
+        document.getElementById("top").style.background = "#222222";
     } else {
         $('#top').prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("top").style.background = "#f2f2f2";
         $('#top').attr('nextTop', btn.data.top);
     }
     if (!btn.isBottomActive) {
         $('#down').prop("disabled", true).css("cursor", "default");
+        document.getElementById("down").style.background = "#222222";
         $('#down').removeAttr('nextBottom');
     } else {
         $('#down').prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("down").style.background = "#f2f2f2";
         $('#down').attr('nextBottom', btn.data.bottom);
     }
 }
@@ -207,16 +307,25 @@ var moveRight = function() {
     }, 1000);
     if (status == 'land') {
         $("#plow").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#f2f2f2";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'plowed') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
-        $("#plow").prop("disabled", true).css("cursor", "pointer");
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("harvest").style.background = "#f2f2f2";
     }
     console.log([activeKey]);
 }
@@ -234,16 +343,25 @@ var moveLeft = function() {
     }, 1000);
     if (status == 'land') {
         $("#plow").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#f2f2f2";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'plowed') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("harvest").style.background = "#f2f2f2";
     }
 }
 
@@ -259,16 +377,25 @@ var moveTop = function() {
     }, 1000);
     if (status == 'land') {
         $("#plow").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#f2f2f2";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'plowed') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("harvest").style.background = "#f2f2f2";
     }
 }
 
@@ -284,16 +411,25 @@ var moveBottom = function() {
     }, 1000);
     if (status == 'land') {
         $("#plow").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#f2f2f2";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'plowed') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("harvest").style.background = "#f2f2f2";
     }
 }
 
@@ -303,9 +439,12 @@ var plowField = function(self) {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/plow.png)');
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'plowed');
         $("#seed").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#f2f2f2";
         $("#plow").prop("disabled", true).css("cursor", "default");
-        $("#harvest").prop("disabled", true).css("cursor", "pointer");
-        console.log('in plowField fn');
+        document.getElementById("plow").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
+        console.log(self);
     }
 }
 
@@ -315,25 +454,33 @@ var seedField = function(self) {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/seed.png)');
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seed');
         $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
         $("#plow").prop("disabled", true).css("cursor", "default");
-        $("#harvest").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
+        console.log(self);
+        setTimeout(function() {
+            seededField(self);
+        }, 2000);
     }
+
+var seededField = function(self) {
     var self = $('#seed');
-    setTimeout(function() {
-        seededField(self);
-    }, 2000);
+    var current = $(self).attr('current');
+    if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed') {
+        $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
+        $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
+        $("#seed").prop("disabled", true).css("cursor", "default");
+        document.getElementById("seed").style.background = "#222222";
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#harvest").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("harvest").style.background = "#f2f2f2";
+        console.log(self);
 
-    var seededField = function(self) {
-        var current = $(self).attr('current');
-        if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed') {
-            $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
-            $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
-            $("#seed").prop("disabled", true).css("cursor", "default");
-            $("#plow").prop("disabled", true).css("cursor", "default");
-            $("#harvest").prop("disabled", false).css("cursor", "pointer");
-
-        }
     }
+}
 }
 
 var startharvest = function(self) {
@@ -342,11 +489,15 @@ var startharvest = function(self) {
         $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/land.png)');
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'land');
         $("#seed").prop("disabled", true).css("cursor", "default");
-        $("#plow").prop("disabled", false).css("cursor", "default");
-        $("#harvest").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#222222";
+        $("#plow").prop("disabled", false).css("cursor", "pointer");
+        document.getElementById("plow").style.background = "#f2f2f2";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
+        console.log(current);
     }
-    console.log(current);
 }
+
 
 var startwater = function() {
     $(".imgwater").show();
