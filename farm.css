@@ -1,38 +1,65 @@
 .onfield{
     position: absolute;
-    margin-top: 0px;
+    top: 0px;
     margin-left: 800px;
-}
-.onfield{
-    position: absolute;
-    margin-top: 0px;
-    margin-left: 800px;
-}
-.farmboy{
-    z-index: 3;
-}
-.imgplow{
-    z-index: 2;
 }
 .feedtree{
     position: absolute;
-    margin-top: 0px;
+    top: 0px;
     margin-left: 900px;
 }
 .gohome{
     position: absolute;
-    margin-top: 0px;
+    top: 0px;
     margin-left: 1000px;
 }
 .farmboy{
     position: absolute;
-    margin-top: 0px;
-    margin-left: 0px;
+    left: 34px;
+    top: 20px;
+    z-index: 3;
+}
+
+.stop{
+    background-image: url(img/farmer.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 80px;
+    width: 80px;
+}
+.stopmove{
+    background-image: url(img/farrmer_move.gif);
+    background-repeat: no-repeat;
+
+    background-size: 100% 100%;
+    height: 80px;
+    width: 80px;
+}
+.men{
+    position: absolute;
+    left: 34px;
+    top: 40px;
+    z-index: 3;
+}
+.lowerbodydiv{
+    position: relative;
+
+    left: -4px;
+    top: -4px;
+}
+.leftfoot{
+    left: 2px;
+    position: absolute;  
+}
+
+.rightfoot{
+    left: 19px;
+    position: absolute;  
 }
 .farmtree{
     position: absolute;
-    margin-top: 450px;
-    margin-left: 0px;
+    bottom: 30px;
+    left: 16px;
 }
 .innerdiv{
     position: absolute;
@@ -42,27 +69,27 @@
 .startwater{
     position: absolute;
     margin-top: 290px;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 .stopwater{
     position: absolute;
     margin-top: 290px;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 .plow{
     position: absolute;
-    margin-top: 300px;
-    margin-left: 400px;
+    top: 300px;
+    left: 400px;
 }
 .seed{
     position: absolute;
-    margin-top: 330px;
-    margin-left: 400px;
+    top: 330px;
+    left: 400px;
 }
 .harvest{
     position: absolute;
-    margin-top: 360px;
-    margin-left: 400px;
+    top: 360px;
+    left: 400px;
 }
 .up{
     position: absolute;
@@ -86,6 +113,7 @@
 }
 .imgwater{
     position: absolute;
-    margin-top: 430px;
-    margin-left: 110px;
+    z-index: 1;
+    bottom: 0px;
+    left: 16px;
 }

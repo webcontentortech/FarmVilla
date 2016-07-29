@@ -17,23 +17,24 @@ $(document).ready(function() {
     $("#onfield").prop("disabled", false).css("cursor", "pointer");
     document.getElementById("onfield").style.background = "#f2f2f2";
     $("#feedtree").prop("disabled", false).css("cursor", "pointer");
-    document.getElementById("feedtree").style.background = "#f2f2f2";
+    document.getElementById("onfield").style.background = "#f2f2f2";
+    $("#left").prop("disabled", true).css("cursor", "default");
+    document.getElementById("left").style.background = "#222222";
+    $("#top").prop("disabled", true).css("cursor", "default");
+    document.getElementById("top").style.background = "#222222";
+    $("#right").prop("disabled", true).css("cursor", "default");
+    document.getElementById("right").style.background = "#222222";
+    $("#down").prop("disabled", true).css("cursor", "default");
+    document.getElementById("down").style.background = "#222222";
     $("#plow").prop("disabled", true).css("cursor", "default");
     document.getElementById("plow").style.background = "#222222";
     $("#seed").prop("disabled", true).css("cursor", "default");
     document.getElementById("seed").style.background = "#222222";
     $("#harvest").prop("disabled", true).css("cursor", "default");
     document.getElementById("harvest").style.background = "#222222";
-    $("#left").prop("disabled", true).css("cursor", "default");
-    document.getElementById("left").style.background = "#222222";
-    $("#right").prop("disabled", true).css("cursor", "default");
-    document.getElementById("right").style.background = "#222222";
-    $("#top").prop("disabled", true).css("cursor", "default");
-    document.getElementById("top").style.background = "#222222";
-    $("#down").prop("disabled", true).css("cursor", "default");
-    document.getElementById("down").style.background = "#222222";
 
     $("#feedtree").click(function() {
+        $("#stop").addClass("stopmove");
         $("#left").prop("disabled", true).css("cursor", "default");
         document.getElementById("left").style.background = "#222222";
         $("#top").prop("disabled", true).css("cursor", "default");
@@ -60,9 +61,13 @@ $(document).ready(function() {
         $(".farmboy").animate({
             "marginTop": "+450px"
         }, 3000);
-        setTimeout(startwaterbutton, 5000);
+        setTimeout(startwaterbutton, 6000);
+        setTimeout(feedaddclass, 6000);
+
 
     });
+
+
     $("#left").click(function() {
         moveLeft();
     });
@@ -91,7 +96,9 @@ $(document).ready(function() {
     $("#seed").click(function() {
         seedField(this);
     });
+
     $("#gohome").click(function() {
+        $("#stop").addClass("stopmove");
         $("#left").prop("disabled", true).css("cursor", "default");
         document.getElementById("left").style.background = "#222222";
         $("#top").prop("disabled", true).css("cursor", "default");
@@ -119,10 +126,14 @@ $(document).ready(function() {
             "marginLeft": "+0px"
         }, 3000);
         $("#startwater").hide();
+        setTimeout(gohomeClass, 6000);
 
     });
+
     createFarm(farmFields);
+
     $("#onfield").click(function() {
+        $("#stop").addClass("stopmove");
         activeButtons(farmArray[activeKey]);
         console.log([activeKey]);
         var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
@@ -133,7 +144,6 @@ $(document).ready(function() {
             document.getElementById("seed").style.background = "#222222";
             $("#harvest").prop("disabled", true).css("cursor", "default");
             document.getElementById("harvest").style.background = "#222222";
-            console.log(current);
         } else if (status == 'plowed') {
             $("#plow").prop("disabled", true).css("cursor", "default");
             document.getElementById("plow").style.background = "#222222";
@@ -149,7 +159,6 @@ $(document).ready(function() {
             $("#harvest").prop("disabled", false).css("cursor", "pointer");
             document.getElementById("harvest").style.background = "#f2f2f2";
         }
-
         $("#gohome").prop("disabled", false).css("cursor", "pointer");
         document.getElementById("gohome").style.background = "#f2f2f2";
         $("#feedtree").prop("disabled", false).css("cursor", "pointer");
@@ -157,62 +166,70 @@ $(document).ready(function() {
         $("#onfield").prop("disabled", true).css("cursor", "default");
         document.getElementById("onfield").style.background = "#222222";
         $(".farmboy").animate({
-            "marginTop": '250px'
+            "marginTop": '210px'
         }, 3000);
         $(".farmboy").animate({
-            "marginLeft": '645px'
+            "marginLeft": '570px'
         }, 3000);
-        /*$("#plow").prop("disabled", false).css("cursor", "pointer");
-         document.getElementById("plow").style.background="#f2f2f2";
-        $("#seed").prop("disabled", true).css("cursor", "default");
-         document.getElementById("seed").style.background="#222222";
-        $("#harvest").prop("disabled", true).css("cursor", "default");
-         document.getElementById("harvest").style.background="#222222";
-        activeButtons(farmFields.one);*/
         $("#startwater").hide();
-        console.log(current);
+        console.log(activeKey);
+        setTimeout(addClass, 6000);
+
+
     });
 });
 var defaultFarmField = 'one';
 var activeFarmField = 'one';
-var farmFields = {};
-farmFields.one = {
-    left: false,
-    right: 'two',
-    top: false,
-    bottom: 'four',
-    current: 'one'
-}, farmFields.two = {
-    left: 'one',
-    right: 'three',
-    top: false,
-    bottom: 'five',
-    current: 'two'
-}, farmFields.three = {
-    left: 'two',
-    right: false,
-    top: false,
-    bottom: 'six',
-    current: 'three'
-}, farmFields.four = {
-    left: false,
-    right: 'five',
-    top: 'one',
-    bottom: false,
-    current: 'four'
-}, farmFields.five = {
-    left: 'four',
-    right: 'six',
-    top: 'two',
-    bottom: false,
-    current: 'five'
-}, farmFields.six = {
-    left: 'five',
-    right: false,
-    top: 'three',
-    bottom: false,
-    current: 'six'
-}
+
+var farmFields
+
+
+var farmFields = {
+    one: {
+        left: false,
+        right: 'two',
+        top: false,
+        bottom: 'four',
+        current: 'one',
+    },
+    two: {
+        left: 'one',
+        right: 'three',
+        top: false,
+        bottom: 'five',
+        current: 'two',
+    },
+    three: {
+        left: 'two',
+        right: false,
+        top: false,
+        bottom: 'six',
+        current: 'three',
+    },
+    four: {
+        left: false,
+        right: 'five',
+        top: 'one',
+        bottom: false,
+        current: 'four',
+    },
+    five: {
+        left: 'four',
+        right: 'six',
+        top: 'two',
+        bottom: false,
+        current: 'five',
+    },
+    six: {
+        left: 'five',
+        right: false,
+        top: 'three',
+        bottom: false,
+        current: 'six',
+    }
+};
+
+
 var farmArray = [];
 var activeKey = 0;
 var createFarm = function(farmData) {
@@ -295,13 +312,14 @@ var showButtons = function(btn) {
 }
 
 var moveRight = function() {
+    $("#stop").addClass("stopmove");
     activeKey++;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
     console.log([activeKey]);
     var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
     var off = $('#farmBoy').css('margin-left').replace('px', '');
-    var margin = parseInt(off) + 190;
+    var margin = parseInt(off) + 200;
     $('#farmBoy').animate({
         'marginLeft': margin + 'px'
     }, 1000);
@@ -317,6 +335,13 @@ var moveRight = function() {
         document.getElementById("plow").style.background = "#222222";
         $("#seed").prop("disabled", false).css("cursor", "pointer");
         document.getElementById("seed").style.background = "#f2f2f2";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
+    }  else if (status == 'seed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#222222";
         $("#harvest").prop("disabled", true).css("cursor", "default");
         document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
@@ -328,16 +353,18 @@ var moveRight = function() {
         document.getElementById("harvest").style.background = "#f2f2f2";
     }
     console.log([activeKey]);
+    setTimeout(rightclass, 1000);
 }
 
 var moveLeft = function() {
+    $("#stop").addClass("stopmove");
     activeKey--;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
     var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
     console.log(status);
     var off = $('#farmBoy').css('margin-left').replace('px', '');
-    var margin = parseInt(off) - 190;
+    var margin = parseInt(off) - 200;
     $('#farmBoy').animate({
         'marginLeft': margin + 'px'
     }, 1000);
@@ -355,6 +382,13 @@ var moveLeft = function() {
         document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
         document.getElementById("harvest").style.background = "#222222";
+    } else if (status == 'seed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
         document.getElementById("plow").style.background = "#222222";
@@ -363,15 +397,17 @@ var moveLeft = function() {
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
         document.getElementById("harvest").style.background = "#f2f2f2";
     }
+    setTimeout(leftclass, 1000);
 }
 
 var moveTop = function() {
+    $("#stop").addClass("stopmove");
     activeKey -= 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
     var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
     var off = $('#farmBoy').css('margin-top').replace('px', '');
-    var margin = parseInt(off) - 150;
+    var margin = parseInt(off) - 160;
     $('#farmBoy').animate({
         'marginTop': margin + 'px'
     }, 1000);
@@ -389,6 +425,13 @@ var moveTop = function() {
         document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
         document.getElementById("harvest").style.background = "#222222";
+    } else if (status == 'seed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
         document.getElementById("plow").style.background = "#222222";
@@ -397,15 +440,17 @@ var moveTop = function() {
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
         document.getElementById("harvest").style.background = "#f2f2f2";
     }
+    setTimeout(topclass, 1000);
 }
 
 var moveBottom = function() {
+    $("#stop").addClass("stopmove");
     activeKey += 3;
     console.log(farmArray[activeKey]);
     activeButtons(farmArray[activeKey]);
     var status = $('#myFarm').find('td[current="' + farmArray[activeKey].current + '"]').attr('status');
     var off = $('#farmBoy').css('margin-top').replace('px', '');
-    var margin = parseInt(off) + 150;
+    var margin = parseInt(off) + 160;
     $('#farmBoy').animate({
         'marginTop': margin + 'px'
     }, 1000);
@@ -423,6 +468,13 @@ var moveBottom = function() {
         document.getElementById("seed").style.background = "#f2f2f2";
         $("#harvest").prop("disabled", true).css("cursor", "default");
         document.getElementById("harvest").style.background = "#222222";
+    } else if (status == 'seed') {
+        $("#plow").prop("disabled", true).css("cursor", "default");
+        document.getElementById("plow").style.background = "#222222";
+        $("#seed").prop("disabled", true).css("cursor", "pointer");
+        document.getElementById("seed").style.background = "#222222";
+        $("#harvest").prop("disabled", true).css("cursor", "default");
+        document.getElementById("harvest").style.background = "#222222";
     } else if (status == 'seeded') {
         $("#plow").prop("disabled", true).css("cursor", "default");
         document.getElementById("plow").style.background = "#222222";
@@ -431,6 +483,7 @@ var moveBottom = function() {
         $("#harvest").prop("disabled", false).css("cursor", "pointer");
         document.getElementById("harvest").style.background = "#f2f2f2";
     }
+    setTimeout(bottomclass, 1000);
 }
 
 var plowField = function(self) {
@@ -455,31 +508,19 @@ var seedField = function(self) {
         $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seed');
         $("#seed").prop("disabled", true).css("cursor", "default");
         document.getElementById("seed").style.background = "#222222";
-        $("#plow").prop("disabled", true).css("cursor", "default");
-        document.getElementById("plow").style.background = "#222222";
-        $("#harvest").prop("disabled", true).css("cursor", "default");
-        document.getElementById("harvest").style.background = "#222222";
         console.log(self);
         setTimeout(function() {
-            seededField(self);
-        }, 2000);
+            seededField(current);
+        }, 6000);
     }
 
-var seededField = function(self) {
-    var self = $('#seed');
-    var current = $(self).attr('current');
-    if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed') {
-        $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
-        $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
-        $("#seed").prop("disabled", true).css("cursor", "default");
-        document.getElementById("seed").style.background = "#222222";
-        $("#plow").prop("disabled", true).css("cursor", "default");
-        document.getElementById("plow").style.background = "#222222";
-        $("#harvest").prop("disabled", false).css("cursor", "pointer");
-        document.getElementById("harvest").style.background = "#f2f2f2";
-        console.log(self);
-
-    }
+    var seededField = function(current) {
+        if ($('#myFarm').find('td[current="' + current + '"]').attr('status') == 'seed') {
+            $('#myFarm').find('td[current="' + current + '"]').css('background', 'url(img/field.png)');
+            $('#myFarm').find('td[current="' + current + '"]').attr('status', 'seeded');
+            $("#harvest").prop("disabled", false).css("cursor", "pointer");
+            document.getElementById("harvest").style.background = "#f2f2f2";
+        }
 }
 }
 
@@ -516,4 +557,33 @@ var stopbutton = function() {
 
 var startwaterbutton = function() {
     $("#startwater").show();
+}
+var addClass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+
+}
+var rightclass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+}
+var leftclass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+}
+var topclass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+}
+var bottomclass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+}
+var gohomeClass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
+}
+var feedaddclass = function() {
+    $("#stop").removeClass("stopmove");
+    $("#stop").addClass("stop");
 }
