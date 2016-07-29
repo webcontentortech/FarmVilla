@@ -3,6 +3,17 @@
     margin-top: 0px;
     margin-left: 800px;
 }
+.onfield{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 800px;
+}
+.farmboy{
+    z-index: 3;
+}
+.imgplow{
+    z-index: 2;
+}
 .feedtree{
     position: absolute;
     margin-top: 0px;
@@ -30,12 +41,12 @@
 }
 .startwater{
     position: absolute;
-    margin-top: 400px;
-    margin-left: 0px;
+    margin-top: 290px;
+    margin-left: 100px;
 }
 .stopwater{
     position: absolute;
-    margin-top: 320px;
+    margin-top: 290px;
     margin-left: 100px;
 }
 .plow{
@@ -45,13 +56,13 @@
 }
 .seed{
     position: absolute;
-    margin-top: 230px;
-    margin-left: 500px;
+    margin-top: 330px;
+    margin-left: 400px;
 }
 .harvest{
     position: absolute;
-    margin-top: 255px;
-    margin-left: 500px;
+    margin-top: 360px;
+    margin-left: 400px;
 }
 .up{
     position: absolute;
@@ -60,7 +71,7 @@
 }
 .left{
     position: absolute;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 550px;
 }
 .right{
@@ -70,7 +81,7 @@
 }
 .down{
     position: absolute;
-    margin-top: 25px;
+    margin-top: 30px;
     margin-left: 600px;
 }
 .imgwater{
