@@ -1,16 +1,16 @@
 .onfield{
     position: absolute;
-    top: 0px;
+    top: 10px;
     margin-left: 800px;
 }
 .feedtree{
     position: absolute;
-    top: 0px;
+    top: 10px;
     margin-left: 900px;
 }
 .gohome{
     position: absolute;
-    top: 0px;
+    top: 10px;
     margin-left: 1000px;
 }
 .farmboy{
@@ -78,42 +78,42 @@
 }
 .plow{
     position: absolute;
-    top: 300px;
-    left: 400px;
+    top: 125px;
+    left: 900px;
 }
 .seed{
     position: absolute;
-    top: 330px;
-    left: 400px;
+    top: 125px;
+    left:960px;
 }
 .harvest{
     position: absolute;
-    top: 360px;
-    left: 400px;
+    top: 125px;
+    left: 1020px;
 }
 .up{
     position: absolute;
-    margin-top: 0px;
-    margin-left: 600px;
+    top: 75px;
+    left: 650px;
 }
 .left{
     position: absolute;
-    margin-top: 10px;
-    margin-left: 550px;
+    top: 100px;
+    left: 600px;
 }
 .right{
     position: absolute;
-    margin-top: 10px;
-    margin-left: 660px;
+    top: 100px;
+    left: 700px;
 }
 .down{
     position: absolute;
-    margin-top: 30px;
-    margin-left: 600px;
+    top: 125px;
+    left: 650px;
 }
 .imgwater{
     position: absolute;
     z-index: 1;
-    bottom: 0px;
+    bottom: 15px;
     left: 16px;
 }
